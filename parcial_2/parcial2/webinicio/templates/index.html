@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Inicio</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    </head>
+
+    <!-- Header con links y nombre de la tienda -->
+    <header class="horizontal-header">
+        <h1>cuboZ</h1>
+        <nav class="enlaces">
+            <ul>
+                <!-- Se muestran las opciones del header dependiendo si se ha iniciado sesion -->
+                <!--Si se ha iniciado sesion-->
+                {%if request.session.user_authenticated%}
+                        <li><a href="{% url 'inicio' %}">Home</a></li>
+                        <li><a href="{% url 'lista' %}">Productos</a></li>
+                        <li>
+                            {% csrf_token %}
+                            <a href="{% url 'custom_logout' %}">Cerrar sesión</a>
+                        </li>
+                <!--Si no se ha iniciado sesion-->
+                {%else%}
+                        <li><a href="{% url 'inicio' %}">Home</a></li>
+                        <li><a href="{% url 'lista' %}">Productos</a></li>
+                        <li><a href="{% url 'login' %}">Ingresar</a></li>
+                        <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Imagen de flecha con animacion al pasar el mouse -->
+    <div class="flecha_div">
+        <img src="{%static 'img/flecha.png' %}" alt= "flecha" class="flecha">
+    </div>
+
+    <!-- Texto de bienvenida con animacion -->
+    <section>
+        <div class="content">
+          <h2>Bienvenido</h2>
+          <h2>Bienvenido</h2>
+        </div>
+    </section>
+
+    <!-- Set de imagenes con fines decorativos que se mueven al pasar el mouse por encima -->
+    <div class="imgs_home">
+        <img src="{% static 'img/img_inicio1.jpg' %}" class="img_home">
+        <img src="{% static 'img/img_inicio2.jpg' %}" class="img_home">
+        <img src="{% static 'img/img_inicio3.jpg' %}" class="img_home">
+    </div>
+
+    <!--Footer-->
+    <footer class="horizontal-footer" style="position: fixed; bottom: 0; width:100%;">
+        <h1>© Sebastián Castro</h1>
+        <h2>2023</h2>
+        <h3>Correo: juan_castro82211@elpoli.edu.co</h3>
+        <a href="https://docs.google.com/document/d/1ugtDVxvKPoQ9C-0Zu86W_SDtjKugtgeuFlsf7OhG-6s/edit?usp=sharing" style="color: white; text-decoration: underline;" target="_blank">Ayuda</a>
+    </footer>
+</html>

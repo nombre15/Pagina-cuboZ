@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+/*Colores en general para la pagina*/
+:root {
+    --primary: #d1d1d1;
+    --primary-hover: #efefef;
+    --secondary: #ebebeb;
+    --secondary-hover: #fbfbfb;
+    --aura: #ffffffba;
+    --background: #474747;
+}
+
+/*Estilos en general para la pagina*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background);
+    font-family: Mulish;
+}
+
+/*Cambiar el color del header 1*/
+h1 {
+    color: var(--secondary);
+}
+
+/*Fondo con imagen*/
+.background {
+    content: "";
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+    background-image: url('../img/fondo.jpg');
+    background-size: auto;
+    background-repeat: no-repeat;
+
+}
+
+/*Elementos centrados*/
+.centering {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/*Formulario estilizado*/
+.my-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 16px;
+    background-color: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px var(--aura);
+    min-width: 280px;
+    max-width: 460px;
+    width: 100%;
+    padding: 32px;
+}
+
+/*Bienvenido al login*/
+.login-welcome {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.login-welcome-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/*Boton para validar el formulario*/
+.my-form__button {
+    background-color: var(--primary);
+    color: var(--background);
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    line-height: 50px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: .025em;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+
+/*Campos donde se ingresa texto*/
+.text-field input {
+    color: var(--secondary);
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid var(--secondary);
+    height: 50px;
+    letter-spacing: .03rem;
+    background-color: transparent;
+    outline: none;
+    transition: .25s;
+    border-radius: 8px;
+    text-indent: 20px;
+    margin-top: 8px;
+}
+
+/*Cambiar de color al boton de validar formulario al pasar el mouse por encima*/
+.my-form__button:hover {
+    background-color: var(--primary-hover);
+}
+
+/*Campos de texto*/
+.text-field {
+    position: relative;
+}
+
+/*Bordes del campo de texto*/
+.text-field input::-webkit-input-placeholder { 
+    color: var(--secondary-hover);
+}
+
+/*Imagen en campo de texto*/
+.text-field img {
+    position: absolute;
+    right: -2px;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+}
+
+.text-field input:focus {
+    border: 1px solid var(--primary);
+}
+
+/*Campo de texto*/
+.text-field label {
+    color: var(--secondary);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .03rem;
+    z-index: 10;
+}
+
+.input-icon {
+    position: absolute;
+    bottom: 0;
+    top: 55%;
+    right: 8px;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+}
+
+.my-form__actions {
+    display: flex;
+    flex-direction: column;
+    color: var(--secondary);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.my-form__actions a {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.my-form__actions a:hover {
+    color: #a7a2cb;               
+}
+
+.my-form__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Opcion para registrarse*/
+.my-form__signup {
+    background-color: var(--background);
+    color: var(--background);
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    line-height: 50px;
+    outline: none;
+    font-size: 18px;
+    letter-spacing: .025em;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 50px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.15);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+
+/*Hacer que la opcion para registrarse sea clickeable*/
+.my-form__signup a {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/*Cambiar de color al pasar el mouse por encima*/
+.my-form__signup a:hover {
+    color: var(--primary-hover);
+}
+
+/*Footer*/
+.horizontal-footer {
+
+    color: white;
+    padding: 10px;
+}
+
+/*Header*/
+.horizontal-header {
+
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    height: 70px;
+}
+
+/* Elementos del header */
+.horizontal-header nav ul {
+    list-style: none;
+    text-align: right;
+}
+
+/* Elementos del header */
+.horizontal-header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+/* Elementos del header */
+.horizontal-header nav ul li a {
+    color: white; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*Diseño responsivo*/
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 24px; 
+    }
+
+    .my-form {
+        max-width: 80%; 
+    }
+}
+
+/*Estado que indica si se ha introducido mal algun dato*/
+.estado{
+    font-size: large;
+    color: red;
+}
+
+/*Vista para cuando la sesion ya ha sido iniciada*/
+.sesion_iniciada{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  
+}
+
+/*Boton para volver al index cuando la sesion ya ha sido iniciada*/
+.volver {
+    text-decoration: none;
+    color: white;
+    background-color: #2b2b2b;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-content: space-around;
+    justify-content: space-around;
+}

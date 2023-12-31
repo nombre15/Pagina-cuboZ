@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Registro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+            rel="stylesheet"
+        >
+    </head>
+    <body>
+
+        <!-- Header con links y titulo de la tienda -->
+		<header class="horizontal-header">
+            <h1>cuboZ</h1>
+            <nav class="enlaces">
+                <ul>
+                    <!-- Se muestran las opciones del header dependiendo si se ha iniciado sesion -->
+                    <!--Si se ha iniciado sesion-->
+                    {%if request.session.user_authenticated%}
+                        <li><a href="{% url 'inicio' %}">Home</a></li>
+                        <li><a href="{% url 'lista' %}">Productos</a></li>
+                         <li>
+                            {% csrf_token %}
+                            <a href="{% url 'custom_logout' %}">Cerrar sesión</a>
+                        </li>
+                    <!--Si no se ha iniciado sesion-->
+                    {%else%}
+                        <li><a href="{% url 'inicio' %}">Home</a></li>
+                        <li><a href="{% url 'lista' %}">Productos</a></li>
+                        <li><a href="{% url 'login' %}">Ingresar</a></li>
+                        <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                    {%endif%}
+                </ul>
+            </nav>
+        </header>
+
+        <div class="background"></div>
+        <div class="centering">
+            <form class="my-form" method = "post">
+                {% csrf_token %}
+                <div class="registro-welcome-row">
+                    <img class="registro-welcome" src="{% static 'img/registro.jpg' %}" alt="fondo">
+                    <h1>Registrarse</h1>
+                    <h1>{{ estado }}</h1> <!-- Header para informar que no se pudo completar el registro -->
+                </div>
+
+                <!-- Form de registro de django -->
+                {{ form_registration.as_p }}
+
+                <!-- Campo para contraseña -->
+                <div class="password-field">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" name="password">
+                </div>
+
+                <input type="submit" class="my-form__button" value="Registrarse" onclick="validateRegistration(event)">
+
+                <!-- Opcion para ingresar -->
+                <div class="my-form__actions">
+                    <div class="my-form__signup">
+                        <a href="{% url 'login' %}" title="Volver a login" class="my-form__signup">Ingresar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!--Script de registro-->
+        <script src="{% static 'js/registro.js' %}"></script>
+
+        <!--Footer-->
+		<footer class="horizontal-footer">
+            <h1>© Sebastián Castro</h1>
+            <h2>2023</h2>
+            <h3>Correo: juan_castro82211@elpoli.edu.co</h3>
+            <a href="https://docs.google.com/document/d/1ugtDVxvKPoQ9C-0Zu86W_SDtjKugtgeuFlsf7OhG-6s/edit?usp=sharing" style="text-decoration: underline;" target="_blank">Ayuda</a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,376 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+ 
+/*Estilizacion del cuerpo de la pagina*/
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    background: linear-gradient(to left, rgb(149 149 149), rgb(251 251 251));
+}
+ 
+/*Estilizacion de listas en general*/
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ 
+/*Estilizacion de elementos de una lista en general*/
+li {
+    padding: 30px;
+}
+ 
+/*Estilizacion de anchors en general*/
+a{
+ 
+    text-decoration: none;
+    color: black;
+}
+ 
+/*Cubrir la imagen para que sea clickeable y lleve a la pagina de detalles*/
+.link_producto{
+ 
+    width: fit-content;
+    margin-right: 50px;
+}
+ 
+/*Al pasar el mouse sobre el carrito convertir el cursor en un apuntador para indicar que es clickeable*/
+.carrito{
+
+    cursor: pointer;
+}
+
+/*Boton para agregar objetos al carrito*/
+.agg_carrito{
+
+    width: 40%;
+    background-color: floralwhite;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: 15px;
+    font-style: oblique;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/*Al pasar el mouse sobre el boton, el cursor se convierte en un puntero para indicar que es clickeable*/
+.agg_carrito span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+  
+/*Animacion al poner el mouse encima del boton, mueve las letras a la izquierda y aparece un signo de mas
+para indicar que la funcion es agregar un objeto al carrito*/
+.agg_carrito span:after {
+    content: '+';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+  
+.agg_carrito:hover span {
+    padding-right: 25px;
+}
+  
+.agg_carrito:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.agg_carrito:active {
+    background-color: #9ab3b3;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+/*Boton para cerrar el carrito*/
+.close-square {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    box-shadow: rgba(255, 71, 66, 0.8) 0 0 15px;
+  }
+  
+  /*Al pasar el mouse sobre el boton, el fondo cambia a blanco, la sombra cambia a blanco y las letras 
+  cambian a rojo*/
+  .close-square:hover,
+  .close-square:active {
+    background: white;
+    color: #FF4742;
+    box-shadow: rgba(255, 255, 255, 0.8) 0 0 15px;
+  }
+  
+  .close-square:active {
+    opacity: .5;
+  }
+ 
+/* Responsive layout adjustments */
+@media (max-width: 768px) {
+    .body {
+        gap: 10px;
+    }
+}
+ 
+/* Aplicar estilos al layout */
+.layout {
+    width: 100%; /* Tomar todo el ancho de la pantalla */
+    max-width: 100%; 
+    margin-top: 50px;
+    box-sizing: border-box; 
+    display: flex;
+}
+ 
+/* Aplicar estilos al contenido */
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
+} 
+ 
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; 
+    align-items: flex-start;
+}
+ 
+.enlaces{
+ 
+    display: flex;
+}
+ 
+/* Layout responsiva */
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr; /* Cambiar a una sola columna */
+        gap: 10px;
+    }
+    .body {
+        flex-direction: column;
+        align-items: center;
+    }
+    .link_producto {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}
+ 
+.titulo{
+ 
+    background-color: #333;
+    color: white;
+    size: 10px;
+    text-align: justify;
+}
+
+/* Impar en las filas de los objetos del carrito */
+.odd{
+
+    background-color: white;
+    cursor: pointer;
+}
+
+/*Al pasar el mouse por encima, cambia de color*/
+.odd:hover{
+
+    background-color: rgb(233, 233, 233);
+    cursor: pointer;
+}
+
+/* Par en las filas de los objetos del carrito */
+.even{
+
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+/*Al pasar el mouse por encima, cambia de color*/
+.even:hover{
+
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+}
+ 
+/*Header*/
+.horizontal-header {
+ 
+    background-color: #333;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    height: 70px;
+}
+ 
+/*Elementos del header*/
+.horizontal-header nav ul {
+    list-style: none;
+    text-align: right;
+}
+ 
+/*Elementos del header*/
+.horizontal-header nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+ 
+/*Elementos del header*/
+.horizontal-header nav ul li a {
+    color: white; 
+    text-decoration: none;
+    font-weight: bold;
+}
+ 
+/*Footer*/
+.horizontal-footer {
+ 
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+ 
+body, h1, h2, h3, ul {
+    margin: 0;
+    padding: 0;
+}
+ 
+main, footer {
+    margin-top: 60px;
+}
+ 
+/*Detalles e imagen del producto*/
+.contenido-prod{
+ 
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    margin: 10%;
+    border-radius: 15px;
+    border: solid 2px;
+    padding: 2%;
+    box-shadow: rgb(0 0 0) 2px 3px 4px;
+}
+ 
+ /*Detalles del producto*/
+.detalles-prod{
+ 
+    width: 50%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    text-shadow: -4px 3px 0px gainsboro;
+    line-height: 2;
+}
+ 
+/*Imagen del producto*/
+.img-prod{
+ 
+    height: 400px;
+    width: auto;
+    margin-left: 90px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px 10px gainsboro;
+}
+
+/*Cuadro del carrito*/
+.square-overlay {
+
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 20%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    background-color: #fdfff3;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+    flex-direction: column;
+    border: 2px solid black;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10%;
+    font-size: 20px;
+    background: linear-gradient(to right, #7e7e7e,  #b8a793);
+}
+
+/*Al pasar el mouse por encima del cuadro del carrito, su fondo cambia de color*/
+.square-overlay:hover {
+    background: linear-gradient(to right, #b8a793, #7e7e7e); /* Gradient background on hover */
+}
+
+/*Contenido del carrito*/
+.square-content {
+    
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    max-height: 80px; /* Set maximum height for the content */
+    overflow-y: auto;
+}
+
+/*Lista de productos en el carrito*/
+#itemList {
+    list-style-type: none;
+    padding: 0;
+    overflow-y: auto;
+}
+
+/*Producto individual en el carrito*/
+#itemList li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    white-space: pre-line;
+    justify-content: space-between;
+    border: 1px solid;
+}
+
+/*Imagen del carrito dentro del cuadro del carrito*/
+.carrito_img{
+
+    width: 15%;
+    height: auto;
+}
+
+/*Imagen del carrito dentro del boton de agregar al carrito*/
+.carrito_img2{
+
+    width: 8%;
+    height: auto;
+}

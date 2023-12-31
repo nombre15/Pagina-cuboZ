@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Descripcion producto</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/producto.css' %}">
+    </head>
+ 
+    <!-- Header con links y nombre de la tienda -->
+    <header class="horizontal-header">
+        <h1>cuboZ</h1>
+        <nav class="enlaces">
+            <ul>
+                <li><a href="{% url 'inicio' %}">Home</a></li>
+                <li><a href="{% url 'lista' %}">Productos</a></li>
+                <li><a class="carrito" id="carrito_btn" onclick="showSquare()">Carrito</a></li>
+                <!-- Se muestran las opciones del header dependiendo si se ha iniciado sesion -->
+                <!--Si se ha iniciado sesion-->
+                {%if request.session.user_authenticated%}
+                    <li>
+                        {% csrf_token %}
+                        <a href="{% url 'custom_logout' %}">Cerrar sesión</a>
+                    </li>
+                <!--Si no se ha iniciado sesion-->
+                {%else%}
+                    <li><a href="{% url 'login' %}">Ingresar</a></li>
+                    <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    </header>
+ 
+    <div class="contenido-prod">
+        <div class="detalles-prod">
+
+            <h1 class="atributo">{{prod.nom_prod}}</h1> 
+            <h1 class="atributo">${{prod.precio_prod}}</h1>
+            <button class="agg_carrito" title="Agregar al carrito" onclick="addItem('{{ prod.nom_prod }}', '{{ prod.precio_prod }}')"><span>Agregar al carrito </span><img src="{% static 'img/carrito.png' %}" class="carrito_img2"></button>
+            <br>
+            <h2 class="atributo">Marca: {{prod.marca_prod}}</h2>
+            <h2 class="atributo">Color de fondo: {{prod.color_fondo_prod}}</h2>
+            <h4 class="atributo">Descripción: {{prod.detalle_prod}}</h4>
+        </div>
+        <div class="imagen-prod-div">
+            <img src="{{ prod.imagen_prod }}" alt="{{ prod.nom_prod }}" class="img-prod">
+        </div>
+    </div>
+ 
+    <!--Cuadro del carrito-->
+    <div class="square-overlay" id="squareOverlay">
+        <h1>Carrito</h1>
+        <img src="{% static 'img/carrito.png' %}" class="carrito_img">
+        <div id="vacio">
+            <h4>El carrito está vacio</h4>
+        </div>
+        <ul id="itemList">
+            
+        </ul>
+
+        <h3 id="precioTotal"></h3>
+        <button class="close-square" id="closeSquare">Cerrar</button>
+    </div>
+
+    <!--Footer-->
+    <footer class="horizontal-footer">
+        <h1>© Sebastián Castro</h1>
+        <h2>2023</h2>
+        <h3>Correo: juan_castro82211@elpoli.edu.co</h3>
+        <a href="https://docs.google.com/document/d/1ugtDVxvKPoQ9C-0Zu86W_SDtjKugtgeuFlsf7OhG-6s/edit?usp=sharing" style="color: white; text-decoration: underline;" target="_blank">Ayuda</a>
+    </footer>
+
+    <script src="{% static 'js/carrito.js' %}"></script>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Productos filtrados</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    </head>
+    
+    <body>
+
+        <!-- Header con links y nombre de la tienda -->
+        <header class="horizontal-header">
+            <h1>cuboZ</h1>
+            <nav class="enlaces">
+                <ul>
+                    <li><a href="{% url 'inicio' %}">Home</a></li>
+                    <li><a href="{% url 'lista' %}">Productos</a></li>
+                    <li><a class="carrito" id="carrito_btn" onclick="showSquare()">Carrito</a></li>
+                    <!-- Se muestran las opciones del header dependiendo si se ha iniciado sesion -->
+                    <!--Si se ha iniciado sesion-->
+                    {%if request.session.user_authenticated%}
+                        <li>
+                            {% csrf_token %}
+                            <a href="{% url 'custom_logout' %}">Cerrar sesión</a>
+                        </li>
+                    <!--Si no se ha iniciado sesion-->
+                    {%else%}
+                        <li><a href="{% url 'login' %}">Ingresar</a></li>
+                        <li><a href="{% url 'registro' %}">Registrarse</a></li>
+                    {%endif%}
+                </ul>
+            </nav>
+        </header>
+
+        <section class="layout">
+
+            <!-- Lista de categorias -->
+            <div class="sidebar">
+                <ul>
+                    <li class="titulo">Categorías</li>
+                    <a href="{% url 'productos_por_categoria' categoria='2x2' %}">
+                        <li class="odd">2x2 </li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='3x3' %}">
+                        <li class="even" title="Cubos 3x3">3x3</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='4x4' %}">
+                        <li class="odd" title="Cubos 4x4">4x4</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='5x5' %}">
+                        <li class="even" title="Cubos 5x5">5x5</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='6x6' %}">
+                        <li class="odd" title="Cubos 6x6">6x6</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='7x7' %}">
+                        <li class="even" title="Cubos 7x7">7x7</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='8x8mas' %}">
+                        <li class="odd" title="Cubos 8x8 o mayores">8x8 o más</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='megaminx' %}">    
+                        <li class="even" title="Tipo megaminx">Megaminx</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='pyraminx' %}">    
+                        <li class="odd" title="Tipo pyraminx">Pyraminx</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='modificacion3x3' %}">    
+                        <li class="even" title="Modificaciones del cubo 3x3">Modificaciones 3x3</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='modificacion4x4mas' %}">
+                        <li class="odd" title="Modificaciones del cubo 4x4 o mayores">Modificaciones 4x4 o más</li>
+                    </a>
+                    <a href="{% url 'productos_por_categoria' categoria='varios' %}">
+                        <li class="even" title="Cubos de diferentes categorias">Varios</li>
+                    </a>
+                </ul>
+            </div>
+
+            <!-- Lista de productos por la categoria -->
+            <div class="body">
+
+                {% if productos %}
+                        {% for producto in productos %}
+                            <a title="{{ producto.nom_prod }}" class="link_producto" href="{% url 'detalle_producto' producto.id %}">
+                                <div class="producto">
+                                    <img src="{{producto.imagen_prod}}" alt="{{ prod.nom_prod }}" class="ref_img">
+                                    <h2>{{ producto.nom_prod }}</h2>
+                                    <h1 class="precio">${{producto.precio_prod}}</h1>
+                                </div>
+                            </a>
+                        {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="right-div" style="position: absolute; right: 0;" >
+
+                <h1 class="prox">PRÓXIMAMENTE</h1>
+
+                <!-- Slideshow con imagenes de cubos que aun no estan disponibles como productos -->
+                <div class="slideshow-container">
+
+                    <div class="mySlides1">
+                        <img src="{% static 'img/prox_1_1.jpg' %}" style="width:100%" class="prox_img" title="5x5 outline">
+                    </div>
+                
+                    <div class="mySlides1">
+                        <img src="{% static 'img/prox_1_2.jpg' %}" style="width:100%" class="prox_img" title="5x5 outline">
+                    </div>
+        
+                    <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                </div>
+
+                <div class="slideshow-container">
+
+                    <div class="mySlides2">
+                        <img src="{% static 'img/prox_2_1.jpg' %}" style="width:100%" class="prox_img" title="ivy cube">
+                    </div>
+                
+                    <div class="mySlides2">
+                        <img src="{% static 'img/prox_2_2.jpg' %}" style="width:100%" class="prox_img" title="ivy cube">
+                    </div>
+        
+                    <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+                </div>
+            </div>
+          </section>
+
+        <!--Cuadro del carrito-->
+        <div class="square-overlay" id="squareOverlay">
+            <h1>Carrito</h1>
+            <img src="{% static 'img/carrito.png' %}" class="carrito_img">
+            <div id="vacio">
+                <h4>El carrito está vacio</h4>
+            </div>
+            <ul id="itemList">
+                
+            </ul>
+
+            <h3 id="precioTotal"></h3>
+            <button class="close-square" id="closeSquare">Cerrar</button>
+        </div>
+
+        <!--Footer-->
+        <footer class="horizontal-footer">
+            <h1>© Sebastián Castro</h1>
+            <h2>2023</h2>
+            <h3>Correo: juan_castro82211@elpoli.edu.co</h3>
+            <a href="https://docs.google.com/document/d/1ugtDVxvKPoQ9C-0Zu86W_SDtjKugtgeuFlsf7OhG-6s/edit?usp=sharing" style="color: white; text-decoration: underline;" target="_blank">Ayuda</a>
+        </footer>
+
+         <!--Scripts-->
+        <script src="{% static 'js/script.js' %}"></script>
+        <script src="{% static 'js/carrito.js' %}"></script>
+    </body>
+</html>
